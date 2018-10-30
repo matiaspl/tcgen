@@ -18,4 +18,4 @@ ffmpeg $debug -re -f lavfi -i "smptehdbars=r=$fps:s=$size" \
         color=color=red:r=$fps:s=32x32[box];[bg][box] \
         overlay=y=H*3/4-h/2-H*cos(mod(t\,1)*2*PI)/5:x=W/2-w/2+H*sin(mod(t\,1)*2*PI)/5" \
         -map 0:v:0 -c:v libx264 -force_key_frames "expr:gte(n,n_forced*5*$fps)" -pix_fmt yuv420p -preset ultrafast -tune:v animation -b:v 1000k \
-        -map 1:a:0 -channels 2 -c:a aac -b:a 100k -f flv rtmp://localhost/stream_test/tc
+        -map 1:a:0 -ac 2 -c:a aac -b:a 100k -f flv rtmp://localhost/stream_test/tc
